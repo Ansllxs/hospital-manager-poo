@@ -99,14 +99,7 @@ public class Cita implements Serializable {
 
     @Override
     public String toString() {
-        return "Cita{" +
-                "identificacion=" + identificacion +
-                ", paciente=" + paciente +
-                ", fecha='" + fecha + '\'' +
-                ", observaciones='" + observaciones + '\'' +
-                ", medico=" + medico +
-                ", diagnosticos=" + diagnosticos +
-                ", tratamientos=" + tratamientos +
-                '}';
+        String nombrePaciente = (paciente != null) ? paciente.getNombre() : "Sin paciente";
+        return "Cita #" + identificacion + " - " + nombrePaciente + " - " + fecha;
     }
 }

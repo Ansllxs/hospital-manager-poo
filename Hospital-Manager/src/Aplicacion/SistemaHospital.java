@@ -4,6 +4,7 @@ import Conceptos.Paciente;
 import Conceptos.Medico;
 import Conceptos.Cita;
 import Util.ArchivoBinario;
+import Util.ManejadorXML;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -335,5 +336,76 @@ public class SistemaHospital {
         }
 
         return resultados;
+    }
+
+    // ==================== OPERACIONES DE IMPORTAR/EXPORTAR/LIMPIAR ====================
+
+    /**
+     * Exporta las listas actuales de pacientes, médicos y citas a archivos XML
+     * Genera los archivos en Hospital-Manager/Export/
+     * @return true si se exportó correctamente, false en caso de error
+     */
+    public boolean exportarDatos() {
+        try {
+            boolean exitoPacientes = ManejadorXML.exportarPacientes(pacientes);
+            boolean exitoMedicos = ManejadorXML.exportarMedicos(medicos);
+            boolean exitoCitas = ManejadorXML.exportarCitas(citas);
+
+            if (!exitoPacientes || !exitoMedicos || !exitoCitas) {
+                System.err.println("Error: No se pudieron exportar todos los datos a XML.");
+                return false;
+            }
+
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al exportar datos: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Importa datos desde archivos XML y reemplaza las listas actuales
+     * Los datos importados se guardan inmediatamente en archivos .DAT
+     * @return true si se importó correctamente, false en caso de error
+     */
+    public boolean importarDatos() {
+        try {
+            // Importar desde XML
+            ArrayList<Paciente> pacientesImportados = ManejadorXML.importarPacientes();
+            ArrayList<Medico> medicosImportados = ManejadorXML.importarMedicos();
+            ArrayList<Cita> citasImportadas = ManejadorXML.importarCitas(pacientesImportados, medicosImportados);
+
+            // Reemplazar listas internas
+            this.pacientes = pacientesImportados;
+            this.medicos = medicosImportados;
+            this.citas = citasImportadas;
+
+            // Guardar inmediatamente en archivos .DAT
+            guardarDatos();
+
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al importar datos: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Limpia todas las listas internas y vacía los archivos .DAT
+     * No elimina los archivos XML
+     */
+    public void limpiarDatos() {
+        try {
+            // Vaciar listas internas
+            this.pacientes.clear();
+            this.medicos.clear();
+            this.citas.clear();
+
+            // Guardar listas vacías en archivos .DAT
+            guardarDatos();
+
+        } catch (Exception e) {
+            System.err.println("Error al limpiar datos: " + e.getMessage());
+        }
     }
 }

@@ -236,29 +236,16 @@ public class VentanaSolicitarCita extends JFrame {
         }
     }
 
-    /**
-     * Muestra mensaje temporal sobre el botón de agregar pacientes
-     * TODO: Conectar con VentanaPacientes cuando esté disponible
-     */
     private void mostrarMensajePacientes() {
-        JOptionPane.showMessageDialog(
-            this,
-            "La ventana de pacientes será integrada desde la ventana principal.",
-            "Información",
-            JOptionPane.INFORMATION_MESSAGE
-        );
-
-        // TODO: Cuando VentanaPacientes esté lista, reemplazar este método con:
-        // VentanaPacientes ventanaPacientes = new VentanaPacientes(sistema);
-        // ventanaPacientes.setVisible(true);
-        // ventanaPacientes.addWindowListener(new WindowAdapter() {
-        //     @Override
-        //     public void windowClosed(WindowEvent e) {
-        //         cargarPacientes(); // Recargar pacientes después de cerrar
-        //     }
-        // });
-    }
-
+    PacientesFrame ventanaPacientes = new PacientesFrame(sistema);
+    ventanaPacientes.setVisible(true);
+    ventanaPacientes.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosed(java.awt.event.WindowEvent e) {
+            cargarPacientes();
+        }
+    });
+}
     /**
      * Limpia todos los campos del formulario
      */

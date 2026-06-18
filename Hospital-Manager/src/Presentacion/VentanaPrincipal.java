@@ -49,6 +49,7 @@ public class VentanaPrincipal extends JFrame {
         // ── Panel de citas (fila superior) ──
         JPanel panelCitas = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 10));
         panelCitas.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
+        panelCitas.setBackground(new Color(230, 240, 255));
 
         panelCitas.add(crearBotonIcono("Consultar", "Imagenes/consultar.png", e -> abrirConsultar()));
         panelCitas.add(crearBotonIcono("Solicitar",  "Imagenes/solicitar.png",  e -> abrirSolicitar()));
@@ -57,12 +58,14 @@ public class VentanaPrincipal extends JFrame {
         // ── Panel de personas (fila inferior) ──
         JPanel panelPersonas = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 10));
         panelPersonas.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
+        panelPersonas.setBackground(new Color(230, 240, 255));
 
         panelPersonas.add(crearBotonIcono("Pacientes", "Imagenes/pacientes.png", e -> abrirPacientes()));
         panelPersonas.add(crearBotonIcono("Medicos",   "Imagenes/medicos.png",   e -> abrirMedicos()));
 
         // ── Panel central que agrupa ambas filas ──
         JPanel panelCentral = new JPanel(new GridLayout(2, 1));
+        panelCentral.setBackground(new Color(230, 240, 255));
         panelCentral.add(panelCitas);
         panelCentral.add(panelPersonas);
 

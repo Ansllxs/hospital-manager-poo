@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pacientes>
+  <paciente id="101">
+    <nombre>Ana Mora</nombre>
+    <telefono>8888-1111</telefono>
+    <email>ana@email.com</email>
+  </paciente>
+  <paciente id="102">
+    <nombre>Luis Rojas</nombre>
+    <telefono>8888-2222</telefono>
+    <email>luis@email.com</email>
+  </paciente>
+</pacientes>

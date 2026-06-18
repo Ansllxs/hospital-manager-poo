@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<medicos>
+  <medico id="M01">
+    <nombre>Dr. Carlos Pérez</nombre>
+    <telefono>2222-1111</telefono>
+    <puesto>Médico general</puesto>
+  </medico>
+  <medico id="M02">
+    <nombre>Dra. María Soto</nombre>
+    <telefono>2222-2222</telefono>
+    <puesto>Pediatra</puesto>
+  </medico>
+</medicos>
